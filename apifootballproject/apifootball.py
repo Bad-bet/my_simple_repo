@@ -3,61 +3,46 @@ import json
 import html
 import re
 
-from models.main_model import Command, History, Game, League
+from common.common import DataParser, JsonConductor
+from common.models.main_model import Command, History, Game, League
+from common.models.data_parser import DataInterface, DataJsonInterface
 
+urls = ['https://soccer365.ru/competitions/18/']
 
-result = []
-def html_to_txt(html_text):
-    ## unescape html
-    txt = html.unescape(html_text)
-    tags = re.findall("<[^>]+>",txt)
-    # print("found tags: ")
-    # print(tags)
-    for tag in tags:
-        txt=txt.replace(tag,'')
-    return txt
-
-def get_data(text):
-    main_json = ''
-    new_json = re.findall(r'{.*}',text)
-    j = 0
-    for i in new_json:
-        if j == len(new_json) - 1:
-            main_json += f'{i}'
-        else:
-            main_json += f'{i},'
-        j += 1
-
-    new_data = main_json.replace('@', '')
-    json_data = '{"data":' + '[' + new_data + ']' + '}'
-    return json_data
-
-
-
-# response = requests.get('https://soccer365.ru/competitions/18/')
-# croud_block = response.text
-# block = ''.join(croud_block)
-# print(block.replace(' ', ''))
+# next_games_block = DataParser(DataInterface(url=urls[0])).get_data()
 #
 # with open('bundes_ligue.txt', 'w') as file:
-#     file.write(response.text)
+#     file.write(next_games_block)
+
+"""
+data = DataInterface(
+    html_text=next_games_block[28900:47350]
+)
+crude_json = DataParser(data).tag_replacer()
+"""
 
 with open('bundes_ligue.txt', 'r') as f:
     crude_block = f.read()
     # print(crude_block[28900:32000])
     # print(crude_block[39000:41350])
-    crude_json = html_to_txt(crude_block[28900:47350])
+    data=DataInterface(
+        html_text=crude_block[28900:45350]
+    )
+    crude_json = DataParser(data).tag_replacer()
 
 # print(get_data(crude_json))
-
+for_json_data = DataJsonInterface(
+    write_json_data=DataParser(DataInterface(text=crude_json)).make_next_tour_json(),
+    json_next_tour_name=f'next_tour_json.json'
+)
 # Запись json'a
-with open(f'next_tour_json.json', 'w', encoding='utf8') as f:
-    f.write(get_data(crude_json))
+JsonConductor(for_json_data).json_record()
+json_schedule = JsonConductor(DataJsonInterface(
+    write_json_data='',
+    json_next_tour_name=for_json_data.json_next_tour_name)
+).get_from_json()
 
-with open('next_tour_json.json', 'r') as f:
-    json_schedule = json.load(f)
-
-print(json_schedule['data'][0]['performer'][0]['name'])
+print(json_schedule['data'][0])
 
 NEAREST_SCHEDULE = League(
     league_id=1,
@@ -83,5 +68,4 @@ LAST_RESULT = League(
 
 
 )
-result.append(NEAREST_SCHEDULE)
 print (LAST_RESULT)

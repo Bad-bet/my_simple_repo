@@ -1,0 +1,134 @@
+{
+  "data": [
+    {
+      "context": "http://schema.org",
+      "type": "Event",
+      "name": "Монако - Монпелье",
+      "url": "https://soccer365.ru/live/match-monpele-monako-smotret-onlayn/",
+      "startDate": "2024-09-28T22:00:00+03:00",
+      "location": {
+        "type": "Place",
+        "name": "Луи II",
+        "address": {
+          "type": "PostalAddress",
+          "addressLocality": "Монако",
+          "addressCountry": "Монако"
+        }
+      },
+      "performer": [
+        {
+          "type": "SportsOrganization",
+          "name": "Монако"
+        },
+        {
+          "type": "SportsOrganization",
+          "name": "Монпелье"
+        }
+      ]
+    },
+    {
+      "context": "http://schema.org",
+      "type": "Event",
+      "name": "Тулуза - Лион",
+      "url": "https://soccer365.ru/live/match-tuluza-lion-smotret-onlayn/",
+      "startDate": "2024-09-29T16:00:00+03:00",
+      "location": {
+        "type": "Place",
+        "name": "Муниципальный стадион Тулузы",
+        "address": {
+          "type": "PostalAddress",
+          "addressLocality": "Тулуза",
+          "addressCountry": "Франция"
+        }
+      },
+      "performer": [
+        {
+          "type": "SportsOrganization",
+          "name": "Тулуза"
+        },
+        {
+          "type": "SportsOrganization",
+          "name": "Лион"
+        }
+      ]
+    },
+    {
+      "context": "http://schema.org",
+      "type": "Event",
+      "name": "Нант - Сент-Этьен",
+      "url": "https://soccer365.ru/live/match-nant-senteten-smotret-onlayn/",
+      "startDate": "2024-09-29T18:00:00+03:00",
+      "location": {
+        "type": "Place",
+        "name": "Ля Божуар - Луи Фонтено",
+        "address": {
+          "type": "PostalAddress",
+          "addressLocality": "Нант",
+          "addressCountry": "Франция"
+        }
+      },
+      "performer": [
+        {
+          "type": "SportsOrganization",
+          "name": "Нант"
+        },
+        {
+          "type": "SportsOrganization",
+          "name": "Сент-Этьен"
+        }
+      ]
+    },
+    {
+      "context": "http://schema.org",
+      "type": "Event",
+      "name": "Анже - Реймс",
+      "url": "https://soccer365.ru/live/match-anje-reyms-smotret-onlayn/",
+      "startDate": "2024-09-29T18:00:00+03:00",
+      "location": {
+        "type": "Place",
+        "name": "Стад Раймон Копа",
+        "address": {
+          "type": "PostalAddress",
+          "addressLocality": "Анже",
+          "addressCountry": "Франция"
+        }
+      },
+      "performer": [
+        {
+          "type": "SportsOrganization",
+          "name": "Анже"
+        },
+        {
+          "type": "SportsOrganization",
+          "name": "Реймс"
+        }
+      ]
+    },
+    {
+      "context": "http://schema.org",
+      "type": "Event",
+      "name": "Страсбур - Марсель",
+      "url": "https://soccer365.ru/live/match-strasbur-marsel-smotret-onlayn/",
+      "startDate": "2024-09-29T21:45:00+03:00",
+      "location": {
+        "type": "Place",
+        "name": "Стад де ла Мено",
+        "address": {
+          "type": "PostalAddress",
+          "addressLocality": "Страсбург",
+          "addressCountry": "Франция"
+        }
+      },
+      "performer": [
+        {
+          "type": "SportsOrganization",
+          "name": "Страсбур"
+        },
+        {
+          "type": "SportsOrganization",
+          "name": "Марсель"
+        }
+      ]
+    }
+  ]
+}

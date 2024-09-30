@@ -1,0 +1,8 @@
+1) add common folder
+2) move models to common folder
+3) add DataParserModel, it satisfy classes args for JsonConductor & DataParser
+4) add DataParser common class witch: get http data, tag replacer, make next & last tours json, get_html_for_last_tour
+5) add JsonConductor common class witch: operate with json write & read from file
+6) add DataUtils common class witch: get host & gest commands & scores
+7) add new file witch: inside will get data for all main championship
+8) add type hint for common file
