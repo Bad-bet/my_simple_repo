@@ -38,11 +38,10 @@ for_json_data = DataJsonInterface(
 # Запись json'a
 JsonConductor(for_json_data).json_record()
 json_schedule = JsonConductor(DataJsonInterface(
-    write_json_data='',
     json_next_tour_name=for_json_data.json_next_tour_name)
 ).get_from_json()
 
-print(json_schedule['data'][0])
+print(json_schedule['data'])
 
 NEAREST_SCHEDULE = League(
     league_id=1,
