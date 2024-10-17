@@ -8,6 +8,15 @@
 8) add type hint for common file
 
 
+=======
+MR debug_db
+1) add db-extract-interface
+2) add DataBaseReader guest_result & host_result methods for command
+3) methods call drop to debug.py
+!
+main
+
+v_seo_03
 update NEAREST_SCHEDULE models
 сгрумили задачи
 
@@ -38,5 +47,3 @@ TODO
 Расширить NEAREST_SCHEDULE индексами оценки команды
 
 Оценить данные на предмет использования в концоле
-
-

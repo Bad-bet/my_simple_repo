@@ -1,9 +1,14 @@
 import html
 import re
+from pkgutil import get_data
+
 import requests
 import json
 import sqlite3
-from common.models.data_parser import DataInterface, DataJsonInterface, DataDBConductorInterface
+from common.models.data_parser import(
+    DataInterface, DataJsonInterface,
+    DataDBConductorInterface, DataDBReaderInterface
+)
 
 
 
@@ -94,6 +99,7 @@ class DataParser:
         #     list_of_data.append(new_data)
         # last_tour_data = {'data': list_of_data}
         # return last_tour_data
+        #
 
 
 class JsonConductor:
@@ -128,6 +134,70 @@ class DataUtils:
             if not i % 2 == 0 and self.data[i] != 'Бомбардиры':
                 guest_commands.append(self.data[i])
         return guest_commands
+
+class DataBaseReader:
+    def __init__(self, data: DataDBReaderInterface):
+        self.data = data
+
+    def get_host_results(self):
+        get_data = []
+        connect = sqlite3.connect('./common/data_base/football_stats.db')
+        cursor = connect.cursor()
+        if self.data.league_name == 'en':
+            cursor.execute(
+                f'SELECT score, un_score FROM England_League WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'es':
+            cursor.execute(
+                f'SELECT score, un_score FROM Spain_League WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'ger':
+            cursor.execute(
+                f'SELECT score, un_score FROM Germany_League WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'ita':
+            cursor.execute(
+                f'SELECT score, un_score FROM Italy_League WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        cursor.close()
+        print(get_data[:1:-1])
+
+    def get_guest_results(self):
+        connect = sqlite3.connect('./common/data_base/football_stats.db')
+        cursor = connect.cursor()
+        if self.data.league_name == 'en':
+            cursor.execute(
+                f'SELECT score, un_score FROM England_League WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'es':
+            cursor.execute(
+            f'SELECT score, un_score FROM Spain_League WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'ger':
+            cursor.execute(
+            f'SELECT score, un_score FROM Germany_League WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'ita':
+            cursor.execute(
+            f'SELECT score, un_score FROM Italy_League WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        cursor.close()
+        print(get_data[:1:-1])
+
 
 
 class DataBaseConductor:
