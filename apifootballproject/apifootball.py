@@ -1,3 +1,4 @@
+import attrs
 import requests
 import json
 import html
@@ -7,12 +8,12 @@ from common.common import DataParser, JsonConductor
 from common.models.main_model import Command, History, Game, League
 from common.models.data_parser import DataInterface, DataJsonInterface
 
-urls = ['https://soccer365.ru/competitions/18/']
+urls = ['https://soccer365.ru/competitions/17/']
 
-# next_games_block = DataParser(DataInterface(url=urls[0])).get_data()
-#
-# with open('bundes_ligue.txt', 'w') as file:
-#     file.write(next_games_block)
+next_games_block = DataParser(DataInterface(url=urls[0])).get_http_data()
+
+with open('bundes_ligue.txt', 'w') as file:
+    file.write(next_games_block)
 
 """
 data = DataInterface(
@@ -41,30 +42,39 @@ json_schedule = JsonConductor(DataJsonInterface(
     json_next_tour_name=for_json_data.json_next_tour_name)
 ).get_from_json()
 
-print(json_schedule['data'])
+for i in range(9):
+    print(json_schedule['data'][i]['name'])
 
 NEAREST_SCHEDULE = League(
-    league_id=1,
+    league_name='en',
     game=Game(
         game=json_schedule['data'][0]['name'],
         date=json_schedule['data'][0]['startDate']
+    ),
+    commands=Command(
+        host=json_schedule['data'][0]['performer'][0]['name'],
+        guest=json_schedule['data'][0]['performer'][1]['name'],
+        history_host=[
+            History(
+                score=None,
+                un_score=3
+            ),
+            History(
+                score=1,
+                un_score=0
+            )
+        ],
+        history_guest=[
+            History(
+                score=0,
+                un_score=3
+            ),
+            History(
+                score=2,
+                un_score=3
+            )
+        ]
     )
 )
 
-LAST_RESULT = League(
-    league_id=1,
-    commands=Command(
-        host='',
-        guest='',
-        history=History(
-            score=-1,
-            un_score=-1
-        )
-    ),
-    game=Game(
-        date=''
-    ),
-
-
-)
-print (LAST_RESULT)
+# print (attrs.asdict(NEAREST_SCHEDULE))
