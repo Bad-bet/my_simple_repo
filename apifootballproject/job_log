@@ -6,3 +6,10 @@
 6) add DataUtils common class witch: get host & gest commands & scores
 7) add new file witch: inside will get data for all main championship
 8) add type hint for common file
+
+
+MR debug_db
+1) add db-extract-interface
+2) add DataBaseReader guest_result & host_result methods for command
+3) methods call drop to debug.py
+!

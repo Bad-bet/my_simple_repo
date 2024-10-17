@@ -21,3 +21,9 @@ class DataDBConductorInterface:
     guest_command: list[str] | None = None
     host_score: list[int] | None = None
     guest_score: list[int] | None = None
+
+@attrs.frozen
+class DataDBReaderInterface:
+    league_name: str | None = None
+    command_name: str | None = None
+    #
