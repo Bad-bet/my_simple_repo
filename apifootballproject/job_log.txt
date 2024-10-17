@@ -1,0 +1,42 @@
+1) add common folder
+2) move models to common folder
+3) add DataParserModel, it satisfy classes args for JsonConductor & DataParser
+4) add DataParser common class witch: get http data, tag replacer, make next & last tours json, get_html_for_last_tour
+5) add JsonConductor common class witch: operate with json write & read from file
+6) add DataUtils common class witch: get host & gest commands & scores
+7) add new file witch: inside will get data for all main championship
+8) add type hint for common file
+
+
+update NEAREST_SCHEDULE models
+сгрумили задачи
+
+
+
+TODO
+
+сделать индексы оценки команды
+А.
+1) получить данные всех матчей для команды хозяев {'host_stats_command':[{},{}]}
+2) разделить тотал забитых голов на кол-во матчей ({'h_tot_gsc': 0})
+3) разделить тотал пропущенных голов на кол-во матчей ({'h_tot_gusc': 0})
+4) разделить забитые голы на пропущенные ({'h_tot_sc_usc': 0})
+Б.
+5) получить данные для гостевых матчей  {'guest_stats_command': [{},{}]}
+6) разделить тотал забитых голов на кол-во матчей ({'g_tot_gsc': 0})
+7) разделить тотал пропущенных голов на кол-во матчей ({'g_tot_gusc': 0})
+8) разделить забитые голы на пропущенные ({'g_tot_sc_usc': 0})
+
+
+получать данные о событиях для всех лиг
+1) добавить ссылки в массив
+2) сделать цикл, удалить запись в тхт, лишние принты
+3) иследовать как избавиться от промежуточной записи json
+
+Добавить History data из debug_db в NEAREST_SCHEDULE
+
+Расширить NEAREST_SCHEDULE индексами оценки команды
+
+Оценить данные на предмет использования в концоле
+
+

@@ -11,7 +11,8 @@ class History:
 class Command:
     host: str | None = None
     guest: str | None = None
-    history: History | None = None
+    history_host: list [History] | None = None
+    history_guest: list [History] | None = None
 
 
 @attrs.frozen
@@ -23,7 +24,7 @@ class Game:
 
 @attrs.frozen
 class League:
-    league_id: int | None = None
+    league_name: str | None = None
     commands: Command | None = None
     game: Game | None = None
 
