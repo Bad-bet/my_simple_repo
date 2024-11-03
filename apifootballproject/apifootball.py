@@ -21,9 +21,6 @@ spain_announce = []
 germany_announce = []
 italy_announce = []
 
-es_announce_data = {}
-ger_announce_data = {}
-ita_announce_data = {}
 
 for i in range(len(URLS)):
     next_games_block = DataParser(DataInterface(url=URLS[i])).get_http_data()
@@ -50,11 +47,6 @@ for i in range(len(URLS)):
         germany_announce = DataAnnounceMaker(data=json_schedule, name=LEAGUE_NAME[i]).build_nine_events()
     elif LEAGUE_NAME[i] == 'ita':
         italy_announce = DataAnnounceMaker(data=json_schedule, name=LEAGUE_NAME[i]).bild_ten_events()
-
-
-
-
-print()
 
 
 en_announce_data = DataJsonInterface(
