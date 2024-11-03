@@ -1,5 +1,7 @@
 from common.models.data_parser import DataDBConductorInterface
 from common.utils.db_aproach import DataBaseConductor
+from common.models.data_parser import DataDBReaderInterface
+from common.analytics_data import DataPredictions
 
 
 
@@ -12,14 +14,17 @@ from common.utils.db_aproach import DataBaseConductor
 #     guest_score=[0, 0, 0, 2, 1, 1, 0, 2, 4, 1]
 # )
 #
-# DataBaseConductor(data).write_to_db()
 
-a = [(4, 3), (2, 3), (2, 2), (2, 1)]
-b = []
+command_host = DataDBReaderInterface(
+    league_name='es',
+    command_name='Севилья'
+)
 
-print(range(len(a)))
+command_guest = DataDBReaderInterface(
+    league_name='es',
+    command_name='РеалСосьедад'
+)
 
-for i in  range(len(a)):
-    dict_part = {'score':a[i][0], 'un_score':a[i][1]}
-    print(type(dict_part))
 
+print(DataPredictions(command_host).get_host_predictions())
+print('\n',DataPredictions(command_guest).get_guest_predictions())
