@@ -25,12 +25,22 @@ update NEAREST_SCHEDULE models
 TODO
 
 
-Сделать индексы оценки команды
+v_seo_06 +
 А.
 1) получить данные всех матчей для команды хозяев {'host_stats_command':[{},{}]}
-2) разделить тотал забитых голов на кол-во матчей ({'h_tot_gsc': 0})
-3) разделить тотал пропущенных голов на кол-во матчей ({'h_tot_gusc': 0})
-4) разделить забитые голы на пропущенные ({'h_tot_sc_usc': 0})
+2) разделить тотал забитых голов на кол-во матчей в домашних встречах ({'h_tot_gsc': 0})
+2,2) разделить тотал забитых на выезде на кол-во в гостевых матчей ({'host_guest_total_score'})
+3) разделить тотал пропущенных голов на кол-во домашних матчей ({'h_tot_lost': 0})
+3,3 разделить тотал пропущенных голов на кол-во гостевых матчей ({'host_guest_total_lost'})
+4) разделить забитые голы на пропущенные ({'host_total_host_efficiency': 0})
+4,4 разделить все забитые на все пропущенные ({'host_total_all_efficiency'})
+5) predictions{
+    'should_score_1'
+    'should_score_1*5'
+    'should_score 2.5'
+    'should_lost_1'
+    'should_lost_1*5'
+}
 Б.
 5) получить данные для гостевых матчей  {'guest_stats_command': [{},{}]}
 6) разделить тотал забитых голов на кол-во матчей ({'g_tot_gsc': 0})
@@ -58,12 +68,35 @@ v_seo_05
 4) добавить в history_guest списки с результатами      +
 
 
-Next_task
-Расширить NEAREST_SCHEDULE индексами оценки команды
-1)Расширить модель NEAREST_SCHEDULE
-2)использовать методы, которые будут возвращать объект с интерфейсом DataDBReaderInterface
-3)получить данные для команды хозяев и гостей
-исследовать и добавить в NEAREST_SCHEDULE индексы для каждой команды
+next_task
+Расширить NEAREST_SCHEDULE индексами оценки команды (predictions)
+добавить в модели host_analytics_data, guest_analytics_data
+добавить в модели total_predict
+добавить host_analytics_data, guest_analytics_data, total_predict в data_maker.py
+добавить в next_schedule поля host_analytics_data guest_analytics_data, total_predict
+
+next_task
+сделать общий предикт для встреч:
+сделать метод который будет принимать 2 словаря
+сравнивать значения prediction_score и prediction_lost для host & guest
+сравнивать значения prediction_score и prediction_lost для guest & host
+возвращать словарь total_predict [
+        total_score_1.5 strong - True
+        total_score_1,5 risk - True
+        both_score strong  - True
+        both_score risk - True
+        not_recommended - True
+]
 
 
-Оценить данные на предмет использования в консоле
+Research:
+исследовать sofascore на предмет получения данных с ресурсов
+
+
+next milestone:
+добавить новые лиги
+сделать тригеры для ставок из множества событий
+
+
+
+curl 'https://firebase.googleapis.com/v1alpha/projects/-/apps/1:1041482749526:web:9365699b4ff68ade/webConfig' --compressed -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0' -H 'Accept: application/json' -H 'Accept-Language: ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3' -H 'Accept-Encoding: gzip, deflate, br, zstd' -H 'Referer: https://www.sofascore.com/' -H 'x-goog-api-key: AIzaSyArB9icanQcowNRV2X4Oz0WcSEtMw2B5Ok' -H 'Origin: https://www.sofascore.com' -H 'Connection: keep-alive' -H 'Sec-Fetch-Dest: empty' -H 'Sec-Fetch-Mode: cors' -H 'Sec-Fetch-Site: cross-site' -H 'Priority: u=4' -H 'TE: trailers'

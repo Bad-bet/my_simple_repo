@@ -38,6 +38,7 @@ class DataAnnounceMaker:
             commands=Command(
                 host=self.data['data'][j]['performer'][0]['name'],
                 guest=self.data['data'][j]['performer'][1]['name'],
+
                 history_host=DataUtils(host_history).get_scores(),
                 history_guest=DataUtils(guest_history).get_scores()
             )

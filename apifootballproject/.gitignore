@@ -1,0 +1,19 @@
+bundes_ligue.txt
+common/__pycache__/
+"common/data_base/football_stats (\320\272\320\276\320\277\320\270\321\217).db"
+common/data_base/football_stats_blank1.db
+common/data_base/football_stats_blank2.db
+common/data_base/football_stats_work.db
+common/models/__pycache__/
+common/utils/__pycache__/
+last_tour/
+next_tour_en_json.json
+next_tour_es_json.json
+next_tour_ger_json.json
+next_tour_ita_json.json
+token.txt
+announce_next_tour_en.json
+announce_next_tour_es.json
+announce_next_tour_ger.json
+announce_next_tour_ita.json
+common/data_base/football_stats(copy).db

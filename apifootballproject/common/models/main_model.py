@@ -5,8 +5,8 @@ import attrs
 class Command:
     host: str | None = None
     guest: str | None = None
-    history_host: list | None = None
-    history_guest: list | None = None
+    history_host: list[dict] | None = None
+    history_guest: list [dict]| None = None
 
 
 @attrs.frozen
