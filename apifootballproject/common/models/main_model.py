@@ -5,6 +5,8 @@ import attrs
 class Command:
     host: str | None = None
     guest: str | None = None
+    host_analytics_data: dict | None = None
+    guest_analytics_data: dict | None = None
     history_host: list[dict] | None = None
     history_guest: list [dict]| None = None
 

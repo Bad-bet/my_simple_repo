@@ -68,12 +68,12 @@ v_seo_05
 4) добавить в history_guest списки с результатами      +
 
 
-next_task
-Расширить NEAREST_SCHEDULE индексами оценки команды (predictions)
-добавить в модели host_analytics_data, guest_analytics_data
-добавить в модели total_predict
-добавить host_analytics_data, guest_analytics_data, total_predict в data_maker.py
-добавить в next_schedule поля host_analytics_data guest_analytics_data, total_predict
+v_seo_07
+Расширить NEAREST_SCHEDULE индексами оценки команды (predictions) +-
+добавить в модели host_analytics_data, +
+добавить в модели total_predict -
+добавить host_analytics_data, guest_analytics_data, total_predict в data_maker.py +
+добавить в next_schedule поля host_analytics_data guest_analytics_data, total_predict -
 
 next_task
 сделать общий предикт для встреч:

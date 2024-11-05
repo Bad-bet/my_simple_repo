@@ -41,8 +41,8 @@ for i in range(len(URLS)):
 
     if LEAGUE_NAME[i] == 'en':
         england_announce = DataAnnounceMaker(data=json_schedule, name=LEAGUE_NAME[i]).bild_ten_events()
-    elif LEAGUE_NAME[i] == 'es':
-        spain_announce = DataAnnounceMaker(data=json_schedule, name=LEAGUE_NAME[i]).bild_ten_events()
+    # elif LEAGUE_NAME[i] == 'es':
+    #     spain_announce = DataAnnounceMaker(data=json_schedule, name=LEAGUE_NAME[i]).bild_ten_events()
     elif LEAGUE_NAME[i] == 'ger':
         germany_announce = DataAnnounceMaker(data=json_schedule, name=LEAGUE_NAME[i]).build_nine_events()
     elif LEAGUE_NAME[i] == 'ita':
@@ -55,11 +55,11 @@ en_announce_data = DataJsonInterface(
 )
 JsonConductor(en_announce_data).json_update_record()
 
-en_announce_data = DataJsonInterface(
-    write_json_data=json.dumps(ready_announce_10(spain_announce), ensure_ascii=False),
-    json_next_tour_name=f'announce_next_tour_es.json'
-)
-JsonConductor(en_announce_data).json_update_record()
+# en_announce_data = DataJsonInterface(
+#     write_json_data=json.dumps(ready_announce_10(spain_announce), ensure_ascii=False),
+#     json_next_tour_name=f'announce_next_tour_es.json'
+# )
+# JsonConductor(en_announce_data).json_update_record()
 
 en_announce_data = DataJsonInterface(
     write_json_data=json.dumps(ready_announce_10(italy_announce), ensure_ascii=False),

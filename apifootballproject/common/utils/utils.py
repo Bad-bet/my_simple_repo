@@ -28,12 +28,17 @@ class JsonConductor:
 def germany_league(command_name: str) -> str:
     if command_name == 'Боруссия Мёнхенгладбах':
         return 'БоруссияМ'
+    elif command_name == 'Унион Берлин':
+        return 'УнионБерлин'
     my_command = command_name.replace('-', '').replace(' ','')
     return my_command
 
 def england_league(command_name: str) -> str:
     if command_name == 'Манчестер Сити':
         return 'МанСити'
+    elif command_name == 'Манчестер Юнайтед':
+        return 'МанЮнайтед'
+
     my_command = command_name.replace('-', '').replace(' ','')
     return my_command
 
