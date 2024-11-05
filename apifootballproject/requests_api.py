@@ -9,10 +9,12 @@ from common.common import DataParser
 URL = [
     'https://soccer365.ru/competitions/627/results/',
     'https://soccer365.ru/competitions/565/results/',
-    'https://soccer365.ru/competitions/707/results/'
+    'https://soccer365.ru/competitions/707/results/',
+    'https://soccer365.ru/competitions/18/results/',
+    'https://soccer365.ru/competitions/587/results/'
 ]
 
-next_games_block = DataParser(DataInterface(url=URL[2])).get_http_data()
+next_games_block = DataParser(DataInterface(url=URL[4])).get_http_data()
 data = DataInterface(
     html_text=next_games_block[22100:174950].replace('\t', '').replace('\n', '')
 )

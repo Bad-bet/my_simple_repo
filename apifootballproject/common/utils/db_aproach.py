@@ -132,5 +132,17 @@ class DataBaseConductor:
                     f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
                     f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
                 )
+            elif self.data.league_idx == 'fr':
+                cursor.execute(
+                    f'INSERT INTO France_League (command, date_game, score, un_score, command_guest) VALUES('
+                    f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
+                    f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
+                )
+            elif self.data.league_idx == 'ger-b':
+                cursor.execute(
+                    f'INSERT INTO Germany_LeagueB (command, date_game, score, un_score, command_guest) VALUES('
+                    f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
+                    f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
+                )
         connect.commit()
         cursor.close()

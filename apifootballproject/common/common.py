@@ -32,15 +32,15 @@ class DataParser:
         header_html_pattern =''.join(re.findall('.*<div class="block_body_nopadding">.{118}', self.data.text))
         html_blank = self.data.text.replace(bottom_html_pattern, '').replace(header_html_pattern, '')
         div_class_pattern = re.findall('<div class=".{6}">', html_blank)
-        span_class_pattern = re.findall('<span class="\w*">', html_blank)
+        # span_class_pattern = re.findall('<span class="\w*">', html_blank)
         for i in div_class_pattern:
             html_body = html_blank.replace(i, '').replace('<div class="gls">', '-').replace(' ','')
-        for i in span_class_pattern:
-            html_data = (html_body.replace(
-                i,'').replace('<divclass="status">', '\n')
-                         .replace('<divclass="img16">','\n')
-                         )
-        return html_data
+        # for i in span_class_pattern:
+        #     html_data = (html_body.replace(
+        #         i,'').replace('<divclass="status">', '\n')
+        #                  .replace('<divclass="img16">','\n')
+        #                  )
+        # return html_data
 
 
     def make_next_tour_json(self) -> str:
@@ -61,9 +61,9 @@ class DataParser:
 
     def make_result_league(self):
         # my_data = '18.08,22:30->Реджана+2=Мантова- 2 18.08,22:30->Фрозиноне+2=Сампдория- 2 18.08,22:30->Козенца+1=Кремонезе- 0 18.08,22:30->Чезена+2=Каррарезе- 1 18.08,22:30->Катандзаро+1=Сассуоло- 1 17.08,22:30->Бари+1=ЮвеСтабия- 3 17.08,22:30->Зюйдтироль+2=Модена- 1 17.08,22:30->Салернитана+2=Читтаделла- 1 17.08,22:30->Пиза+2=Специя- 2 16.08,22:30->Брешиа+1=Палермо- 0 '
-        my_data_1 = '28.10, 22:30->++++РасингФерроль+1=Тенерифе1 27.10, 23:00->++++Гранада+++++++1============Леванте2 27.10, 20:30->++++Альбасете++++++3=========СпортингХихон3 27.10, 20:30->++++Уэска++++++2=========Альмерия2 27.10, 18:15->++++Депортиво+1=Расинг2 27.10, 18:15->++++Эльче+++++++1============Бургос0 27.10, 16:00->++++Малага++++++1============Эйбар0 26.10, 20:30->++++Кордоба++++++2=========Эльденсе0 26.10, 20:30->++++Сарагоса++++++1============Кастельон2 26.10, 18:15->++++Кадис+++++++2=========РеалОвьедо0 26.10, 18:15->++++Мирандес+++++++3=========Картахена1 11-й --'
+        my_data_1 = '03.11, 15:30->+Кайзерслаутерн+2=Магдебург2 03.11, 15:30->+Падерборн+0=АйнтрахтБрауншвейг0 03.11, 15:30->+Гамбург++++++1=============Нюрнберг1 02.11, 22:30->+Герта++++++0=Кельн1 02.11, 15:00->+Гройтер++++++1=============Дармштадт5 02.11, 15:00->+ЯнРегенсбург+1=Эльверсберг0 02.11, 15:00->+Ганновер++++++2=Карлсруэ1 01.11, 20:30->+Ульм+0=Шальке0 01.11, 20:30->+ПройссенМюнстер+1=ФортунаДюссельдорф0 10-й --'
         ab = my_data_1[:-6]
-        dc = ab.replace(8*'=', '').replace(', ',',').replace(2*'=', '=').replace(3*'=','=').replace('->++++','->')
+        dc = ab.replace(8*'=', '').replace(', ',',').replace(2*'=', '=').replace(3*'=','=').replace('->+','->')
         my_data = dc.replace(6*'+', '+').replace(2*'=','=').replace(4*'+', '+').replace(2*'+', '+')
         my_pattern = re.findall(r'=[А-я]*', my_data)
         for i in my_pattern:
@@ -98,14 +98,14 @@ class DataParser:
         #     f.write(c)
 
         data_to_db = DataDBConductorInterface(
-            league_idx='es-b',
+            league_idx='ger-b',
             date=dates,
             host_command=host_league_commands,
             guest_command=guest_league_commands,
             host_score=host_score,
             guest_score=guest_score
         )
-        DataBaseConductor(data_to_db).write_to_db()
+        # DataBaseConductor(data_to_db).write_to_db()
         print(dates, len(dates))
         print(host_league_commands, len(host_league_commands))
         print(guest_league_commands, len(guest_league_commands))
