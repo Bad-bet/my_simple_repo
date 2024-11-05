@@ -18,13 +18,13 @@ from common.analytics_data import DataPredictions
 
 
 command_host = DataDBReaderInterface(
-    league_name='es',
-    command_name='Сельта'
+    league_name='ger',
+    command_name='УнионБерлин'
 )
 
 command_guest = DataDBReaderInterface(
-    league_name='es',
-    command_name='Хетафе'
+    league_name='ger',
+    command_name='Фрайбург'
 )
 
 

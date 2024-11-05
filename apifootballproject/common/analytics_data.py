@@ -40,17 +40,17 @@ class DataPredictions:
         new_data['host_total_efficiency'] = host_total_games_score/host_total_game_lost
         new_data['host_total_all_efficiency'] = (host_total_games_score + host_guest_total_score)/(host_total_game_lost + host_guest_total_lost)
 
-        if new_data['host_total_games_score'] > 1 and new_data['host_total_games_score'] > 1.5 and new_data['host_total_games_score'] >= 2:
+        if new_data['host_total_games_score'] > 1 and new_data['host_total_games_score'] > 1.502 and new_data['host_total_games_score'] >= 2:
             new_data['should_score_1'] = True
             new_data['should_score_1.5'] = True
             new_data['should_score_2'] = True
             new_data['prediction_score'] = 'total - 1.5 +'
-        elif 1.12 < new_data['host_total_games_score'] > 1.5:
+        elif 1.12 < new_data['host_total_games_score'] > 1.52:
             new_data['should_score_1'] = True
             new_data['should_score_1.5'] = True
             new_data['should_score_2'] = False
             new_data['prediction_score'] = 'total - 1.5 -'
-        elif 1.12 < new_data['host_total_games_score'] < 1.5:
+        elif 1.12 < new_data['host_total_games_score'] > 1.38:
             new_data['should_score_1'] = True
             new_data['should_score_1.5'] = False
             new_data['should_score_2'] = False
@@ -72,6 +72,7 @@ class DataPredictions:
         else:
             new_data['should_lost_1'] = False
             new_data['should_lost_1.5'] = False
+            new_data['prediction_lost'] = 'not lost'
 
         analytic_data = {'host_data': new_data}
         return analytic_data
@@ -117,12 +118,12 @@ class DataPredictions:
             new_data['should_score_1.5'] = True
             new_data['should_score_2'] = True
             new_data['prediction_score'] = 'total - 1.5 +'
-        elif 1.12 < new_data['guest_total_score'] > 1.5:
+        elif 1.12 < new_data['guest_total_score'] > 1.52:
             new_data['should_score_1'] = True
             new_data['should_score_1.5'] = True
             new_data['should_score_2'] = False
             new_data['prediction_score'] = 'total - 1.5 -'
-        elif 1.12 < new_data['guest_total_score'] < 1.5:
+        elif 1.12 < new_data['guest_total_score'] > 1.38:
             new_data['should_score_1'] = True
             new_data['should_score_1.5'] = False
             new_data['should_score_2'] = False
