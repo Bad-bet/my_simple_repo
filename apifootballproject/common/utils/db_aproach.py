@@ -114,5 +114,23 @@ class DataBaseConductor:
                     f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
                     f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
                 )
+            elif self.data.league_idx == 'ita-b':
+                cursor.execute(
+                    f'INSERT INTO Italy_League_B (command, date_game, score, un_score, command_guest) VALUES('
+                    f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
+                    f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
+                )
+            elif self.data.league_idx == 'en-b':
+                cursor.execute(
+                    f'INSERT INTO En_Championship (command, date_game, score, un_score, command_guest) VALUES('
+                    f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
+                    f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
+                )
+            elif self.data.league_idx == 'es-b':
+                cursor.execute(
+                    f'INSERT INTO Spain_Segundo (command, date_game, score, un_score, command_guest) VALUES('
+                    f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
+                    f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
+                )
         connect.commit()
         cursor.close()

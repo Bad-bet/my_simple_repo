@@ -59,6 +59,60 @@ class DataParser:
         return json_data
 
 
+    def make_result_league(self):
+        # my_data = '18.08,22:30->Реджана+2=Мантова- 2 18.08,22:30->Фрозиноне+2=Сампдория- 2 18.08,22:30->Козенца+1=Кремонезе- 0 18.08,22:30->Чезена+2=Каррарезе- 1 18.08,22:30->Катандзаро+1=Сассуоло- 1 17.08,22:30->Бари+1=ЮвеСтабия- 3 17.08,22:30->Зюйдтироль+2=Модена- 1 17.08,22:30->Салернитана+2=Читтаделла- 1 17.08,22:30->Пиза+2=Специя- 2 16.08,22:30->Брешиа+1=Палермо- 0 '
+        my_data_1 = '28.10, 22:30->++++РасингФерроль+1=Тенерифе1 27.10, 23:00->++++Гранада+++++++1============Леванте2 27.10, 20:30->++++Альбасете++++++3=========СпортингХихон3 27.10, 20:30->++++Уэска++++++2=========Альмерия2 27.10, 18:15->++++Депортиво+1=Расинг2 27.10, 18:15->++++Эльче+++++++1============Бургос0 27.10, 16:00->++++Малага++++++1============Эйбар0 26.10, 20:30->++++Кордоба++++++2=========Эльденсе0 26.10, 20:30->++++Сарагоса++++++1============Кастельон2 26.10, 18:15->++++Кадис+++++++2=========РеалОвьедо0 26.10, 18:15->++++Мирандес+++++++3=========Картахена1 11-й --'
+        ab = my_data_1[:-6]
+        dc = ab.replace(8*'=', '').replace(', ',',').replace(2*'=', '=').replace(3*'=','=').replace('->++++','->')
+        my_data = dc.replace(6*'+', '+').replace(2*'=','=').replace(4*'+', '+').replace(2*'+', '+')
+        my_pattern = re.findall(r'=[А-я]*', my_data)
+        for i in my_pattern:
+            my_data = my_data.replace(i, f'{i}- ')
+        print(my_data)
+        dates = re.findall(r'\d.\.\d.,\d.:\d.', my_data)
+        host_league_commands = [
+            i.replace('>','') for i in re.findall(r'>[А-я]*', my_data)
+        ]
+        guest_league_commands = [
+            i.replace('=', '') for i in re.findall(r'=[А-я]*', my_data)
+        ]
+        host_score = [
+            i.replace('+', '') for i in re.findall(r'\+\d', my_data)
+        ]
+        guest_score = [
+            i.replace('- ', '') for i in re.findall(r'- \d', my_data)
+        ]
+        # a, c = '', ''
+        # round_pattern = re.findall(r'тур', self.data.text)
+        # for i in round_pattern:
+        #     a = self.data.text.replace(i, f'--\n ')
+        # c = a.replace(':30', ':30->').replace(':00', ':00->').replace(':15', ':15->').replace(' 1919', '')
+        # host_pattern = re.findall(f'->[А-я]*', c)
+        # for i in host_pattern:
+        #     c = c.replace(i, f'{i}+')
+        # host_score = re.findall(r'\+\d', c)
+        # for i in host_score:
+        #     c = c.replace(i,f'{i}=')
+        # c = c.replace('==============', '')
+        # with open('seriaB.txt', 'w') as f:
+        #     f.write(c)
+
+        data_to_db = DataDBConductorInterface(
+            league_idx='es-b',
+            date=dates,
+            host_command=host_league_commands,
+            guest_command=guest_league_commands,
+            host_score=host_score,
+            guest_score=guest_score
+        )
+        DataBaseConductor(data_to_db).write_to_db()
+        print(dates, len(dates))
+        print(host_league_commands, len(host_league_commands))
+        print(guest_league_commands, len(guest_league_commands))
+        print(host_score, len(host_score))
+        print(guest_score, len(guest_score))
+
+
     def make_last_tour_data(self) -> dict:
         dates = re.findall(r'\d.\.\d.,\d.:\d.', self.data.text)
         league_commands = [
@@ -79,6 +133,7 @@ class DataParser:
             host_score=host_score,
             guest_score=guest_score
         )
+        print(data)
         if len(dates) != len(host_score):
             for i in range(len(host_score)-len(dates)):
                 dates.append('No Data')
