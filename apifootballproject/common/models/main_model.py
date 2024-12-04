@@ -1,12 +1,13 @@
 import attrs
 
 
-@attrs.frozen
+@attrs.define
 class Command:
     host: str | None = None
     guest: str | None = None
     host_analytics_data: dict | None = None
     guest_analytics_data: dict | None = None
+    total_predict: dict | None = None
     history_host: list[dict] | None = None
     history_guest: list [dict]| None = None
 
@@ -15,6 +16,8 @@ class Command:
 class Game:
     game: str | None = None
     date: str | None = None
+    host_position: str | None =None
+    guest_position: str | None =None
     # добавить котировки БК
 
 

@@ -36,6 +36,43 @@ class DataBaseReader:
                 f'SELECT score, un_score FROM Italy_League WHERE command="{self.data.command_name}" GROUP by ROWID'
             )
             get_data = cursor.fetchall()
+        elif self.data.league_name == 'fr':
+            cursor.execute(
+                f'SELECT score, un_score FROM France_League WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'ita-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM Italy_League_B WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'ger-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM Germany_LeagueB WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'fr-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM France_LeagueB WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'por':
+            cursor.execute(
+                f'SELECT score, un_score FROM Portugal_League WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'en-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM En_Championship WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'es-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM Spain_Segundo WHERE command="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
         cursor.close()
         return get_data
 
@@ -65,6 +102,43 @@ class DataBaseReader:
                 f'SELECT score, un_score FROM Italy_League WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
             )
             get_data = cursor.fetchall()
+
+        elif self.data.league_name == 'fr':
+            cursor.execute(
+                f'SELECT score, un_score FROM France_League WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'ita-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM Italy_League_B WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'ger-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM Germany_LeagueB WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'fr-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM France_LeagueB WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'por':
+            cursor.execute(
+                f'SELECT score, un_score FROM Portugal_League WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'en-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM En_Championship WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+        elif self.data.league_name == 'es-b':
+            cursor.execute(
+                f'SELECT score, un_score FROM Spain_Segundo WHERE command_guest="{self.data.command_name}" GROUP by ROWID'
+            )
+            get_data = cursor.fetchall()
+
         cursor.close()
         return get_data
 
@@ -141,6 +215,18 @@ class DataBaseConductor:
             elif self.data.league_idx == 'ger-b':
                 cursor.execute(
                     f'INSERT INTO Germany_LeagueB (command, date_game, score, un_score, command_guest) VALUES('
+                    f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
+                    f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
+                )
+            elif self.data.league_idx == 'fr-b':
+                cursor.execute(
+                    f'INSERT INTO France_LeagueB (command, date_game, score, un_score, command_guest) VALUES('
+                    f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
+                    f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
+                )
+            elif self.data.league_idx == 'por':
+                cursor.execute(
+                    f'INSERT INTO Portugal_League (command, date_game, score, un_score, command_guest) VALUES('
                     f'"{self.data.host_command[i]}", "{self.data.date[i]}", {self.data.host_score[i]},'
                     f'{self.data.guest_score[i]}, "{self.data.guest_command[i]}")'
                 )

@@ -1,17 +1,22 @@
+"""
+получаает данные для лиг
+"""
 from common.common import DataParser
 from common.models.data_parser import DataInterface
 
 URLS = [
     # 'https://soccer365.ru/competitions/12',
-    'https://soccer365.ru/competitions/16',
+    # 'https://soccer365.ru/competitions/16',
     # 'https://soccer365.ru/competitions/17',
-    # 'https://soccer365.ru/competitions/15',
+    'https://soccer365.ru/competitions/15',
+    # 'https://soccer365.ru/competitions/18/'
 ]
 LEAGUE_NAME = [
     # 'en',
-    'es',
+    # 'es',
     # 'ger',
-    # 'ita'
+    'ita',
+    # 'fr'
 ]
 for i in range(len(URLS)):
     next_games_block = DataParser(DataInterface(url=URLS[i])).get_http_data()
